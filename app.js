@@ -4,9 +4,9 @@ ZGN(function()
   var spi = ZGN.term('1').spi;
 
   // ADT7310の場合
-  //var txinit = 0x56;
+  //var txinit = 0x54;
   //var rxinit = 0x00;
-  var txbuf = [ 0x56, 0x00, 0x00 ];
+  var txbuf = [ 0x50, 0x00, 0x00 ];
   var rxbuf = [ 0x00, 0x00, 0x00 ];
 
   //センサ初期化, 計測開始
