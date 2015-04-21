@@ -30,7 +30,7 @@ ZGN(function()
 		temp = buf[0];
 		temp |= buf[1];
 		temp = temp >> 3;
-		itemp = (int)temp;
+		//itemp = (int)temp;
 		itemp /= 16;
 
     	// 結果を表示
