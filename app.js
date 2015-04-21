@@ -4,12 +4,13 @@ ZGN(function()
   var spi = ZGN.term('1').spi;
 
   // ADT7310の場合
-  var txinit = 0x56;
-  var rxinit = 0x00;
-  var txbuf = [ 0x00, 0x00 ];
-  var rxbuf = [ 0x00, 0x00 ];
+  //var txinit = 0x56;
+  //var rxinit = 0x00;
+  var txbuf = [ 0x56, 0x00, 0x00 ];
+  var rxbuf = [ 0x00, 0x00, 0x00 ];
 
   //センサ初期化, 計測開始
+  /*
   spi.transfer(txinit, rxinit, function(tmp) {
   });
 
@@ -18,6 +19,7 @@ ZGN(function()
 	  setTimeout(callback, time);
   }
   sleep(300, function(){});
+  */
 
   //メインのループ関数
   setInterval(function() {
@@ -27,11 +29,11 @@ ZGN(function()
 		var itemp = 0;
 
 		// 結果配列（16進数の配列）から整数値を取得
-		temp = buf[0];
-		temp |= buf[1];
+		temp = buf[1];
+		temp |= buf[2];
 		temp = temp >> 3;
 		//itemp = (int)temp;
-		itemp /= 16;
+		itemp = temp / 16;
 
     	// 結果を表示
     	$('#status').text(itemp);
