@@ -34,7 +34,7 @@ ZGN(function()
 		itemp /= 16;
 
     	// 結果を表示
-    	$('#status').text(s);
+    	$('#status').text(itemp);
   	});
   }, 500);
 });
