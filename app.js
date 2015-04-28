@@ -30,7 +30,6 @@ ZGN(function()
   });
 
   sleep(500, function(){});
- */
 
   //メインのループ関数
   setInterval(function() {
