@@ -41,7 +41,7 @@ ZGN(function()
 		
 		if(temp >= th){
     		// 通知処理
-			$('#status').text("finished!¥n");
+			$('#status').text("finished!");
 			sleep(3000, function(){});
 		}
 		else{
