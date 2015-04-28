@@ -46,15 +46,16 @@ ZGN(function()
 		//bufを摂氏温度に変換
 		temp = ( buf[0] << 8 | buf[1] ) >> 3;
 		temp /= 16;
-		$('#status').text(temp);	
-
 		if(temp >= th){
     		// 通知処理
 			$('#status').text("finished!");
 			gpio.digitalWrite('21', ZGN.HIGH, function(){});
-			sleep(3000, function(){});
-			gpio.digitalWrite('21', ZGN.LOW, function(){});
 		}
+
+		else {
+			$('#status').text(temp);	
+			gpio.digitalWrite('21', ZGN.LOW, function(){});
+		}	
 
 		//else{
 			// 温度を表示
