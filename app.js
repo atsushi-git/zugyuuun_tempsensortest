@@ -6,6 +6,11 @@ ZGN(function()
   // TerminalのSPIインスタンスを取得
   var spi = term.spi;
 
+  //GPIOセッティング
+  var gpio = term.gpio;
+  gpio.pinMode('21', ZGN.OUTPUT);
+  gpio.digitalWrite('21', ZGN.LOW, function(){});
+
   // ADT7310の場合
   var txinit = [ 0x54 ];
   var rxinit = [ 0x00 ];
@@ -46,6 +51,7 @@ ZGN(function()
 		if(temp >= th){
     		// 通知処理
 			$('#status').text("finished!");
+			gpio.digitalWrite('21', ZGN.HIGH, function(){});
 			sleep(3000, function(){});
 		}
 
