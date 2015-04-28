@@ -21,9 +21,10 @@ ZGN(function()
   //センサの精度を16bitに変更
   spi.transfer([0x08, 0x80], [0x00, 0x00], function(tmp) {
   });
-  sleep(500, function(){});
 */
 
+  sleep(500, function(){});
+  
   //センサの初期設定(13bit, continuous mode)
   spi.transfer(txinit, rxinit, function(tmp){});
   sleep(500, function(){});
