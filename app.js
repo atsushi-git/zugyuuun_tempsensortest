@@ -32,7 +32,7 @@ ZGN(function()
 
   //メインのループ関数
   setInterval(function() {
-    // 200ms毎にSPI通信
+    // 300ms毎にSPI通信
     spi.transfer(txbuf, rxbuf, function(buf) {
 
 		//bufを摂氏温度に変換
@@ -50,5 +50,5 @@ ZGN(function()
 			
 		}
   	});
-  }, 200);
+  }, 500);
 });
