@@ -9,10 +9,11 @@ ZGN(function()
   var txbuf = [ 0x00, 0x00 ];
   var rxbuf = [ 0x00, 0x00 ];
 
-  // 沸騰完了の閾値
+  // 沸騰完了の閾値など
   var th = 30.0;
+  var temp = 0;
 
-  //delay
+  // delay
   function sleep(time, callback){
 	  setTimeout(callback, time);
   }
@@ -31,9 +32,8 @@ ZGN(function()
 
   //メインのループ関数
   setInterval(function() {
-    // 100ms毎にSPI通信
+    // 200ms毎にSPI通信
     spi.transfer(txbuf, rxbuf, function(buf) {
-    	var temp = 0;
 
 		//bufを摂氏温度に変換
 		temp = ( buf[0] << 8 | buf[1] ) >> 3;
@@ -50,5 +50,5 @@ ZGN(function()
 			
 		}
   	});
-  }, 100);
+  }, 200);
 });
