@@ -9,8 +9,8 @@ ZGN(function()
   var txbuf = [ 0x00, 0x00 ];
   var rxbuf = [ 0x00, 0x00 ];
 
-  // 沸騰完了の閾値
-  var th = 30.0;
+  var tx3 = [0x54, 0x00, 0x00];
+  var rx3 = [0x00, 0x00, 0x00];
 
   //delay
   function sleep(time, callback){
@@ -21,34 +21,28 @@ ZGN(function()
   //センサの精度を16bitに変更
   spi.transfer([0x08, 0x80], [0x00, 0x00], function(tmp) {
   });
-  sleep(500, function(){});
 */
+
+  sleep(500, function(){});
 
   //センサの初期設定(13bit, continuous mode)
   spi.transfer(txinit, rxinit, function(tmp) {
   });
+
   sleep(500, function(){});
 
   //メインのループ関数
   setInterval(function() {
-    // 100ms毎にSPI通信
+    // 500ms毎にSPI通信でCH0の状態を取得
     spi.transfer(txbuf, rxbuf, function(buf) {
     	var temp = 0;
 
-		//bufを摂氏温度に変換
-		temp = ( buf[0] << 8 | buf[1] ) >> 3;
+		// 結果配列（16進数の配列）から整数値を取得
+		temp = (buf[0] << 8 | buf[1] ) >> 3;
 		temp /= 16;
-		
-		if(temp >= th){
-    		// 通知処理
-			$('#status').text("finished!¥n");
-			sleep(3000, function(){});
-		}
-		else{
-			// 温度を表示
-    		$('#status').text(temp);
-			
-		}
+
+    	// 結果を表示
+    	$('#status').text(temp);
   	});
-  }, 100);
+  }, 500);
 });
