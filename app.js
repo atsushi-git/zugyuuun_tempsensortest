@@ -53,7 +53,7 @@ ZGN(function()
 		}
 
 		else {
-			$('#status').text(temp);	
+			$('#status').text(temp+"℃");
 			gpio.digitalWrite('21', ZGN.LOW, function(){});
 		}	
 
