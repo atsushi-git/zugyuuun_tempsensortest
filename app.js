@@ -11,7 +11,6 @@ ZGN(function()
 
   // 沸騰完了の閾値など
   var th = 30.0;
-  var temp = 0;
 
   // delay
   function sleep(time, callback){
@@ -33,20 +32,21 @@ ZGN(function()
   setInterval(function() {
     // 300ms毎にSPI通信
     spi.transfer(txbuf, rxbuf, function(buf) {
-
+  		var temp = 0;
 		//bufを摂氏温度に変換
 		temp = ( buf[0] << 8 | buf[1] ) >> 3;
 		temp /= 16;
-		
+		$('#status').text(temp);	
+
 		if(temp >= th){
     		// 通知処理
 			$('#status').text("finished!");
 			sleep(3000, function(){});
 		}
-		else{
+		//else{
 			// 温度を表示
-    		$('#status').text(temp);	
-		}
+    		//$('#status').text(temp);	
+		//}
   	});
-  }, 300);
+  }, 500);
 });
