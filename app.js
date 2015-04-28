@@ -53,6 +53,7 @@ ZGN(function()
 			$('#status').text("finished!");
 			gpio.digitalWrite('21', ZGN.HIGH, function(){});
 			sleep(3000, function(){});
+			gpio.digitalWrite('21', ZGN.LOW, function(){});
 		}
 
 		//else{
