@@ -38,11 +38,14 @@ ZGN(function()
 		temp /= 16;
 		$('#status').text(temp);	
 
+		/*
 		if(temp >= th){
     		// 通知処理
 			$('#status').text("finished!");
 			sleep(3000, function(){});
 		}
+		*/
+
 		//else{
 			// 温度を表示
     		//$('#status').text(temp);	
