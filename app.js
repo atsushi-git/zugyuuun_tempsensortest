@@ -23,6 +23,7 @@ ZGN(function()
   });
 */
 
+  //この待ち時間が大事(FIXME: こう書くとうまく動作する)
   sleep(500, function(){});
   
   //センサの初期設定(13bit, continuous mode)
@@ -39,13 +40,11 @@ ZGN(function()
 		temp /= 16;
 		$('#status').text(temp);	
 
-		/*
 		if(temp >= th){
     		// 通知処理
 			$('#status').text("finished!");
 			sleep(3000, function(){});
 		}
-		*/
 
 		//else{
 			// 温度を表示
