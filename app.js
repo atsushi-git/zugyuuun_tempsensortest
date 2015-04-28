@@ -21,10 +21,11 @@ ZGN(function()
   //センサの精度を16bitに変更
   spi.transfer([0x08, 0x80], [0x00, 0x00], function(tmp) {
   });
+*/
 
   sleep(500, function(){});
 
-  //センサ計測開始
+  //センサの初期設定(13bit, continuous mode)
   spi.transfer(txinit, rxinit, function(tmp) {
   });
 
@@ -34,14 +35,12 @@ ZGN(function()
   //メインのループ関数
   setInterval(function() {
     // 500ms毎にSPI通信でCH0の状態を取得
-    spi.transfer(tx3, rx3, function(buf) {
+    spi.transfer(txbuf, rxbuf, function(buf) {
     	var temp = 0;
 
 		// 結果配列（16進数の配列）から整数値を取得
-		temp = buf[1] << 8;
-		temp += buf[2];
-		//temp = temp >> 3;
-		//itemp = temp / 16;
+		temp = (buf[0] << 8 | buf[1] ) >> 3;
+		temp /= 16;
 
     	// 結果を表示
     	$('#status').text(temp);
