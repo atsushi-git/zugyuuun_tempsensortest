@@ -1,7 +1,10 @@
 ZGN(function()
 {
+  // Terminalの普通のインスタンス取得
+  var term = ZGN.term('1');
+
   // TerminalのSPIインスタンスを取得
-  var spi = ZGN.term('1').spi;
+  var spi = term.spi;
 
   // ADT7310の場合
   var txinit = [ 0x54 ];
