@@ -26,8 +26,7 @@ ZGN(function()
 */
 
   //センサの初期設定(13bit, continuous mode)
-  spi.transfer(txinit, rxinit, function(tmp) {
-  });
+  spi.transfer(txinit, rxinit, function(tmp){});
   sleep(500, function(){});
 
   //メインのループ関数
@@ -46,9 +45,8 @@ ZGN(function()
 		}
 		else{
 			// 温度を表示
-    		$('#status').text(temp);
-			
+    		$('#status').text(temp);	
 		}
   	});
-  }, 500);
+  }, 300);
 });
