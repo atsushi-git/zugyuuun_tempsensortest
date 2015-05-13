@@ -20,7 +20,7 @@ ZGN(function()
   var gpio2 = term_pb.gpio;
 
   gpio2.pinMode(gpio4, ZGN.OUTPUT);
-  gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
+  gpio2.digitalWrite(gpio4, ZGN.HIGH, function(){});
   gpio2.pinMode(gpio5, ZGN.OUTPUT);
   gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
   gpio2.pinMode(gpio6, ZGN.INPUT);
@@ -113,12 +113,12 @@ ZGN(function()
 		//2. フラグを見てgpioを操作する処理	
 		//
 		if( flag_pb == 1 ){
-			gpio2.digitalWrite(gpio4, ZGN.HIGH, function(){});
+			gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
 			gpio2.digitalWrite(gpio5, ZGN.HIGH, function(){});
 			pb_next=1;
 		}
 		else if( flag_pb == 2 ){
-			gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
+			gpio2.digitalWrite(gpio4, ZGN.HIGH, function(){});
 			gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
 			pb_next=0;
 		}
