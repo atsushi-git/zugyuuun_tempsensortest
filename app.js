@@ -44,6 +44,7 @@ ZGN(function()
   var rxbuf = [ 0x00, 0x00 ];
 
   // 沸騰完了の閾値など
+  // 初期表面温度29℃, 水量600mlのとき
   var th = 44.5;
 
   // delay
@@ -84,7 +85,7 @@ ZGN(function()
 			}
 		}
 		else{
-			if(temp < (th-3)){
+			if( (temp < (th-3)) && (temp != 0) ){
 				temp_status = 0;
 			}
 		}
