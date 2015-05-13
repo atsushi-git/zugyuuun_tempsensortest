@@ -25,7 +25,10 @@ ZGN(function()
   gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
   gpio2.pinMode(gpio6, ZGN.INPUT);
 
-  var flag=0;
+  var flag_temp=0;
+  var temp_status=0;
+  var temp_next=0;
+
   var flag_pb=0;
   var pb_status=0;
   var pb_next=0;
@@ -69,16 +72,23 @@ ZGN(function()
 		//bufを摂氏温度に変換
 		temp = ( buf[0] << 8 | buf[1] ) >> 3;
 		temp /= 16;
-		//温度を表示
+		//温度を表示(デバッグ)
 		$('#status').text(temp+"℃");
-		//通知処理
+		
+		//1. 温度が閾値超えたらフラグを立てる処理
 		if(temp >= th){
-			//$('#status').text("finished!");
-			gpio.digitalWrite('21', ZGN.HIGH, function(){});
+			//gpio.digitalWrite('21', ZGN.HIGH, function(){});
+			if(temp_status==0){
+				flag_temp=1;
+				temp_status=1;
+			}
 		}
-		else {
-			gpio.digitalWrite('21', ZGN.LOW, function(){});
-		}	
+		else{
+			if(temp < (th-3)){
+				temp_status = 0;
+			}
+		}
+
   	});
   }, 500);
 
@@ -95,28 +105,28 @@ ZGN(function()
   	//フラグがたったらパトランプつける
   	gpio2.digitalRead(gpio6, function(pin6Status){
   		//1. フラグを立てる処理
-  		//フラグの条件はプッシュスイッチと通知
-  		//もし変化がなかったらそのまま
-		if(pin6Status == ZGN.HIGH){
-			if( pb_status == 0 ){
-				flag_pb=1;
-			}
-			else if( pb_status == 1 ){
-				flag_pb=2;
-			}
+		//スイッチ押されたとき
+		if( pin6Status == ZGN.HIGH ){
+			//通知処理待ち
+			if( pb_status == 0 )		flag_pb=1;
+			//停止処理待ち
+			else if( pb_status == 1 )	flag_pb=2;
 		}
+		//スイッチ押されてないとき
 		else{
 			pb_status = pb_next;
 			flag_pb=0;
 		}
 	
 		//2. フラグを見てgpioを操作する処理	
-		//
-		if( flag_pb == 1 ){
+		//通知処理(お湯が沸いたよ！)
+		if( (flag_pb == 1) || (flag_temp == 1) ){
 			gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
 			gpio2.digitalWrite(gpio5, ZGN.HIGH, function(){});
+			flag_temp = 0;
 			pb_next=1;
 		}
+		//停止処理(ユーザにスイッチが押されたから止めるよ！)
 		else if( flag_pb == 2 ){
 			gpio2.digitalWrite(gpio4, ZGN.HIGH, function(){});
 			gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
