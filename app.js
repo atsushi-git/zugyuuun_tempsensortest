@@ -44,7 +44,7 @@ ZGN(function()
   var rxbuf = [ 0x00, 0x00 ];
 
   // 沸騰完了の閾値など
-  var th = 30.0;
+  var th = 45.5;
 
   // delay
   function sleep(time, callback){
