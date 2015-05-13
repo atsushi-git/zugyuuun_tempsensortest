@@ -17,11 +17,13 @@ ZGN(function()
   var gpio5 = '18';
   var gpio6 = '22';
 
-  gpio.pinMode(gpio4, ZGN.OUTPUT);
-  gpio.digitalWrite(gpio4, ZGN.LOW, function(){});
-  gpio.pinMode(gpio5, ZGN.OUTPUT);
-  gpio.digitalWrite(gpio5, ZGN.LOW, function(){});
-  gpio.pinMode(gpio6, ZGN.INPUT);
+  var gpio2 = term_pb.gpio;
+
+  gpio2.pinMode(gpio4, ZGN.OUTPUT);
+  gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
+  gpio2.pinMode(gpio5, ZGN.OUTPUT);
+  gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
+  gpio2.pinMode(gpio6, ZGN.INPUT);
 
   var flag=0;
   var flag_pb=0;
