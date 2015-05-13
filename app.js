@@ -13,9 +13,9 @@ ZGN(function()
   gpio.digitalWrite('21', ZGN.LOW, function(){});
 
   //通知側のラズパイ(term_pb)のGPIOセッティング
-  var gpio4 = '16';
-  var gpio5 = '18';
-  var gpio6 = '22';
+  var gpio4 = '23';
+  var gpio5 = '24';
+  var gpio6 = '25';
 
   var gpio2 = term_pb.gpio;
 
