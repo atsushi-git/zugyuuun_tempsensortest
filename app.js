@@ -93,7 +93,7 @@ ZGN(function()
   setInterval(function(){
 	
   	//フラグがたったらパトランプつける
-  	gpio.digitalRead(gpio6, function(pin6Status){
+  	gpio2.digitalRead(gpio6, function(pin6Status){
   		//1. フラグを立てる処理
   		//フラグの条件はプッシュスイッチと通知
   		//もし変化がなかったらそのまま
@@ -113,13 +113,13 @@ ZGN(function()
 		//2. フラグを見てgpioを操作する処理	
 		//
 		if( flag_pb == 1 ){
-			gpio.digitalWrite(gpio4, ZGN.HIGH, function(){});
-			gpio.digitalWrite(gpio5, ZGN.HIGH, function(){});
+			gpio2.digitalWrite(gpio4, ZGN.HIGH, function(){});
+			gpio2.digitalWrite(gpio5, ZGN.HIGH, function(){});
 			pb_next=1;
 		}
 		else if( flag_pb == 2 ){
-			gpio.digitalWrite(gpio4, ZGN.LOW, function(){});
-			gpio.digitalWrite(gpio5, ZGN.LOW, function(){});
+			gpio2.digitalWrite(gpio4, ZGN.LOW, function(){});
+			gpio2.digitalWrite(gpio5, ZGN.LOW, function(){});
 			pb_next=0;
 		}
 	});
