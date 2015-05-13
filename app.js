@@ -74,8 +74,10 @@ ZGN(function()
 		temp = ( buf[0] << 8 | buf[1] ) >> 3;
 		temp /= 16;
 		//温度を表示(デバッグ)
-		$('#status').text(temp+"℃");
-		
+		if(temp != 0){
+			$('#status').text(temp+"℃");
+		}
+
 		//1. 温度が閾値超えたらフラグを立てる処理
 		if(temp >= th){
 			//gpio.digitalWrite('21', ZGN.HIGH, function(){});
