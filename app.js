@@ -45,8 +45,8 @@ ZGN(function()
 
   // 沸騰完了の閾値など
   // 初期表面温度29℃, 水量600mlのとき
-  //var th = 44.5;
-  var th = 30.0;
+  var th = 44.5;
+  //var th = 30.0;
 
   // delay
   function sleep(time, callback){
